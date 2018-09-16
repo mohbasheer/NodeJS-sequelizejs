@@ -1,4 +1,4 @@
-import { default as DB } from '../../DB/connection';
+import DB from '../../DB/connection';
 import Student from './student';
 import Teacher from './teacher';
 

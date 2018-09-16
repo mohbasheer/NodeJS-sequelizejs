@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import { default as DB } from '../../DB/connection';
+import DB from '../../DB/connection';
 import Teacher from './teacher';
 import Student from './student';
 

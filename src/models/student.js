@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import { default as DB } from '../../DB/connection';
+import DB from '../../DB/connection';
 import validateEmail from '../validations/email';
 
 

@@ -1,8 +1,5 @@
 import Sequelize from 'sequelize';
-import { default as DB } from './connection';
-
-let env = process.env.NODE_ENV || 'development',
-    force = env === 'development';
+import DB from './connection';
 
 const initializeDB = () => DB.sync();
 
