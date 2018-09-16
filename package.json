@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec npm run babel-node server.js",
+    "init-DB": "babel-node initialize.js",
     "babel-node": "babel-node --inspect"
   },
   "author": "Mohammed Basheer <ssp.basheer@gmail.com>",
