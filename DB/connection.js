@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import Config from '../config/config';
+import Config from '../config/config.json';
 
 let env = process.env.NODE_ENV || 'development';
 let dbConfig = Config[env];
