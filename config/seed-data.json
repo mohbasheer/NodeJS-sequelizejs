@@ -1,0 +1,26 @@
+{
+    "students": [
+        "student11@gmail.com",
+        "student22@gmail.com",
+        "student33@gmail.com",
+        "student44@gmail.com",
+        "student55@gmail.com",
+        "student66@gmail.com",
+        "student77@gmail.com",
+        "student88@gmail.com",
+        "student99@gmail.com",
+        "student00@gmail.com"
+    ],
+    "teachers": [
+        "teacheraa@gmail.com",
+        "teacherbb@gmail.com",
+        "teachercc@gmail.com",
+        "teacherdd@gmail.com",
+        "teacheree@gmail.com",
+        "teacherff@gmail.com",
+        "teachergg@gmail.com",
+        "teacherhh@gmail.com",
+        "teacherii@gmail.com",
+        "teacherjj@gmail.com"
+    ]
+}

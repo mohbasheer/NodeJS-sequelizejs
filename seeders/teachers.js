@@ -1,24 +1,10 @@
 'use strict';
 
+const getSeedData = require('../helper/seed').getTeachersData
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Teachers', [
-      {
-        email: 'some11@xyz.com',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        email: 'some22@xyz.com',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        email: 'some33@xyz.com',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-    ], {});
+    return queryInterface.bulkInsert('Teachers', getSeedData(), {});
   },
 
   down: (queryInterface, Sequelize) => {
