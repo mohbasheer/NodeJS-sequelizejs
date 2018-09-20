@@ -92,4 +92,21 @@ describe('Test API', () => {
         });
 
     });
+
+    describe('Test suspend API', () => {
+
+        it('suspend a given student', done => {
+            request(app)
+                .post('/api/suspend')
+                .send({
+                    student: "student11@gmail.com"
+                })
+                .set('Accept', 'application/json')
+                .expect(204)
+                .end((err, res) => {
+                    if (err) return done(err);
+                    done();
+                });
+        });
+    });
 });

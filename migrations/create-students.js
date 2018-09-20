@@ -11,6 +11,10 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      suspended: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

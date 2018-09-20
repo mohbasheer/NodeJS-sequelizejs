@@ -1,6 +1,6 @@
 import expect from 'expect';
 import initializeDB from '../../../DB';
-import { getStudentsByEmail } from '../../../src/services/student';
+import { getStudentsByEmail, doSuspend } from '../../../src/services/student';
 
 
 describe('Student Service test', () => {
@@ -16,4 +16,10 @@ describe('Student Service test', () => {
         const students = await getStudentsByEmail(students_data);
         expect(students.map(record => record.email)).toEqual(students_data);
     });
+
+    it('suspend a student', async () => {
+        const student = await doSuspend('student11@gmail.com');
+        expect(student.suspended).toBeTruthy();
+    });
+
 });

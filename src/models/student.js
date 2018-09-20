@@ -13,5 +13,9 @@ export default DB.define('Student', {
         type: Sequelize.STRING,
         unique: true,
         validate: { validateEmail }
+    },
+    suspended: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
     }
 });
