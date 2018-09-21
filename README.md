@@ -21,3 +21,16 @@ npm start
 # To run test cases
 
 npm test
+
+
+# API completed
+
+POST /api/register
+
+GET /api/commonstudents
+
+POST /api/suspend
+
+# API inprogress
+
+POST /api/retrievefornotifications
