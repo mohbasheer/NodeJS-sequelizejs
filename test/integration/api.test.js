@@ -3,6 +3,7 @@ import expect from 'expect';
 import request from 'supertest';
 import initializeDB from '../../DB';
 import register from '../../src/models/teacher_student_register';
+import notification from '../../src/models/notification';
 import { createNewRegister } from '../../src/services/teacher_student_register';
 import { getTeacherByEmail } from '../../src/services/teacher';
 import { getStudentsByEmail } from '../../src/services/student';
@@ -109,4 +110,30 @@ describe('Test API', () => {
                 });
         });
     });
+
+    describe('Test Notification API', () => {
+
+        beforeEach(async () => {
+            await notification.destroy(config);
+            return await {};
+        });
+
+        it('receive notificatoin by students', done => {
+            request(app)
+                .post('/api/retrievefornotifications')
+                .send({
+                    teacher: "teacherken@example.com",
+                    notification: "Hello students! @studentagnes@example.com @studentmiche@example.com"
+                })
+                .set('Accept', 'application/json')
+                .expect(200)
+                .end((err, res) => {
+                    if (err) return done(err);
+                    done();
+                });
+        });
+
+    });
+
+
 });

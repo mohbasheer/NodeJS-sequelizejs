@@ -9,3 +9,14 @@ export const getStudents = async (teacher, StudentIDs) => {
     }
     return await teacher.getStudents();
 }
+
+export const getStudentByNotCondition = async (teacher, notConfig) => {
+    return await teacher.getStudents({
+        where: {
+            [Op.not]: [
+                // { id: [1,2,3] }
+                notConfig
+            ]
+        }
+    });
+}
