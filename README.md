@@ -1,6 +1,6 @@
 # Install
 
-instll MSQL Version 8 (while installing configure legacy password only)
+instll MYSQL Version 8 (while installing configure legacy password only)
 
 update the config/config.json
 
