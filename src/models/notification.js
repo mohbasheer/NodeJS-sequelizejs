@@ -6,8 +6,8 @@ import Student from './student';
 
 const Notification = DB.define('Notification', { message: Sequelize.STRING });
 
-Student.hasMany(Notification, { as: 'receiver', foreignKey: 'receiverId' });
-Teacher.hasOne(Notification, { as: 'sender', foreignKey: 'senderId' });
+Notification.hasMany(Student, { as: 'receiver', otherKey: 'receiverId' });
+Notification.hasMany(Teacher, { as: 'sender', otherKey: 'senderId' });
 
 
 export default Notification;

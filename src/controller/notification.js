@@ -12,11 +12,11 @@ export const retrieveForNotifications = async (req, res, next) => {
     try {
         const notification = await createNotification(notification);
         //create notification
-        const studentsByEmail = await getStudentsByEmail(studentsEmail);
+        const students = await getStudentsByEmail(studentsEmail);
         const teacher = await getTeacherByEmail(teacherEmail);
-        const registeredStudent = await getStudentByNotCondition(teacher, { email: studentsEmail });
+        const registeredStudents = await getStudentByNotCondition(teacher, { email: studentsEmail });
         const operationResult = await Promise.all([
-            setNotificationReceivers(students.concat(registeredStudent)),
+            setNotificationReceivers(students.concat(registeredStudents)),
             setNotificationSender(teacher)
         ]
         );
