@@ -8,9 +8,7 @@ install Node Version 8
 
 npm install
 
-npm run migrate
-
-npm run seed
+npm insert-data
 
 
 # To Start Application
@@ -23,14 +21,12 @@ npm start
 npm test
 
 
-# API completed
+# APIs
 
 POST /api/register
 
 GET /api/commonstudents
 
 POST /api/suspend
-
-# API inprogress
 
 POST /api/retrievefornotifications
