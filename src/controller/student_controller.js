@@ -1,13 +1,14 @@
 import { doSuspend } from "../services/student";
+import { missingParamValue, missingParam } from "../utils/throw_error";
 
 
 export const supend = async (req, res, next) => {
     const { student } = req.body;
     if (student === '') {
-        return next(new Error('\'student\' param should have values '));
+        return next(missingParamValue('student'));
     }
     if (!student) {
-        return next(new Error('Missing request param \'student\' '));
+        return next(missingParam('student'));
     }
     try {
         await doSuspend(student);

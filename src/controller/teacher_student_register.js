@@ -1,17 +1,18 @@
 import * as RegisterService from '../services/teacher_student_register';
 import { getTeacherByEmail, getStudentsByTeacher } from '../services/teacher';
 import { getStudentsByEmail } from '../services/student';
+import { missingParamValue, missingParam } from '../utils/throw_error';
 
 export const getCommonStudents = async (req, res, next) => {
     let { teacher } = req.query;
     if (!teacher) {
-        return next(new Error('Missing request param \'teacher\' '));
+        return next(missingParam('teacher'));
     }
     if (typeof teacher === 'string') {
         teacher = [teacher];
     }
     if (!teacher.length) {
-        return next(new Error('\'teacher\' param should have values '));
+        return next(missingParamValue('teacher'));
     }
 
     const getAllCommonStudents = async (teachers) => {
@@ -27,10 +28,8 @@ export const getCommonStudents = async (req, res, next) => {
 
     try {
         const teachers = await Promise.all(teacher.map(email => getTeacherByEmail(email)));
-        console.log('teachers ', teachers);
         let students = await getAllCommonStudents(teachers);
         students = students.map(record => record.email);
-        console.log('students ', students);
         res.json(students);
     } catch (error) {
         next(error);
@@ -39,14 +38,17 @@ export const getCommonStudents = async (req, res, next) => {
 
 export const register = async (req, res, next) => {
     const { teacher, students } = req.body;
+    if (teacher === '') {
+        return next(missingParamValue('teacher'));
+    }
     if (!teacher) {
-        return next(new Error('Missing request param \'teacher\' '));
+        return next(missingParam('teacher'));
     }
     if (!students) {
-        return next(new Error('Missing request param \'students\' '));
+        return next(missingParam('students'));
     }
     if (!students.length) {
-        return next(new Error('\'students\' param should have values '));
+        return next(missingParamValue('students'));
     }
     try {
         const teacherRecord = await getTeacherByEmail(teacher);

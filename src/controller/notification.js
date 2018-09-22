@@ -2,20 +2,21 @@ import NotificationModel from '../models/notification';
 import { getStudentsByEmail } from '../services/student';
 import { getTeacherByEmail, getStudentByNotCondition } from '../services/teacher';
 import { createNotification, setNotificationReceivers, setNotificationSender } from '../services/notification';
+import { missingParam, missingParamValue } from '../utils/throw_error';
 
 
 export const retrieveForNotifications = async (req, res, next) => {
     if (req.body.teacher === '') {
-        return next(new Error('\'student\' param should have values '));
+        return next(missingParamValue('student'));
     }
     if (!req.body.teacher) {
-        return next(new Error('Missing request param \'teacher\' '));
+        return next(missingParam('teacher'));
     }
     if (req.body.notification === '') {
-        return next(new Error('\'notification\' param should have values '));
+        return next(missingParamValue('notification'));
     }
     if (!req.body.notification) {
-        return next(new Error('Missing request param \'notification\' '));
+        return next(missingParam('notification'));
     }
     const teacherEmail = req.body.teacher;
     let notification = req.body.notification.split(' ', 1)[0];

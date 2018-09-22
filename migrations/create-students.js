@@ -29,7 +29,8 @@ module.exports = {
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('TeacherStudentRegisters');
     return queryInterface.dropTable('Students');
   }
 };

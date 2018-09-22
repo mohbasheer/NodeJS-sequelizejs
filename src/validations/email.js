@@ -1,3 +1,5 @@
+import { invalidParam } from "../utils/throw_error";
+
 /**
  * Minimum email validation
  * 
@@ -12,7 +14,7 @@ const validateEmail = email => {
         hasDotAfterAt = email.split('@')[1] && email.split('@')[1].includes('.');
 
     if (!hasValidAt && !hasDotAfterAt) {
-        throw new Error('Invaid Email!')
+        throw invalidParam('Email!');
     }
 }
 

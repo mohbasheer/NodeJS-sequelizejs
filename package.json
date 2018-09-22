@@ -9,9 +9,9 @@
     "undo-migrate": "node_modules/.bin/sequelize db:migrate:undo:all",
     "seed": "node_modules/.bin/sequelize db:seed:all",
     "undo-seed": "node_modules/.bin/sequelize db:seed:undo:all",
-    "insert-data": "npm run undo-seed && npm run migrate && npm run seed",
+    "insert-data": "npm run undo-migrate && npm run migrate && npm run undo-seed && npm run seed",
     "babel-node": "babel-node --inspect",
-    "test": "cross-env NODE_ENV=test npm run insert-data && nodemon --exec npm run test-unit",
+    "test": "cross-env NODE_ENV=test npm run insert-data && nodemon --exec npm run test-integration",
     "test-unit": "./node_modules/.bin/mocha --require babel-polyfill --require babel-register --inspect test/unit/services/*.test.js",
     "test-integration": "./node_modules/.bin/mocha --require babel-polyfill --require babel-register --inspect test/integration/api.test.js"
   },

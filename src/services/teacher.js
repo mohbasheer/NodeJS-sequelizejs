@@ -1,11 +1,12 @@
 import TeacherModel from '../models/teacher';
 import { Op } from 'sequelize';
+import { invalidParam } from '../utils/throw_error';
 
 
 export const getTeacherByEmail = async (email) => {
     const teacher = await TeacherModel.findOne({ where: { email } });
     if (!teacher) {
-        throw new Error('invalid \'teacher\'');
+        throw invalidParam('teacher');
     }
     return teacher;
 };

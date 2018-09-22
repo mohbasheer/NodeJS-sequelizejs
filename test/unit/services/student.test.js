@@ -1,11 +1,13 @@
 import expect from 'expect';
 import initializeDB from '../../../DB';
-import { getStudentsByEmail, doSuspend } from '../../../src/services/student';
+import { getStudentsByEmail, doSuspend, cancelSuspend } from '../../../src/services/student';
 
 
 describe('Student Service test', () => {
 
     before(() => initializeDB());
+
+    after(() => cancelSuspend('student11@gmail.com'));
 
     it('get all students by email', async () => {
         const students_data = [
