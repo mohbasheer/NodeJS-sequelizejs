@@ -1,5 +1,5 @@
 import * as RegisterService from '../services/teacher_student_register';
-import { getTeacherByEmail, getStudents } from '../services/teacher';
+import { getTeacherByEmail, getStudentsByTeacher } from '../services/teacher';
 import { getStudentsByEmail } from '../services/student';
 
 export const getCommonStudents = async (req, res, next) => {
@@ -15,9 +15,9 @@ export const getCommonStudents = async (req, res, next) => {
     }
 
     const getAllCommonStudents = async (teachers) => {
-        let studentsRecord = await getStudents(teachers.pop());
+        let studentsRecord = await getStudentsByTeacher(teachers.pop());
         while (teachers.length && studentsRecord.length > 0) {
-            studentsRecord = await getStudents(
+            studentsRecord = await getStudentsByTeacher(
                 teachers.pop(),
                 studentsRecord.map(record => record.student_id)
             );

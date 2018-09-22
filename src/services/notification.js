@@ -7,7 +7,7 @@ export const setNotificationReceivers = async (notification, students) => {
     return await notification.getReceiver();
 }
 
-export const setNotificationSender = async (teacher, notification) => {
+export const setNotificationSender = async (notification, teacher) => {
     await notification.setSender(teacher);
     return await (await notification.getSender())[0];
 }
