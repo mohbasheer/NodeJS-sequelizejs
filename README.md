@@ -8,7 +8,7 @@ install Node Version 8
 
 npm install
 
-npm insert-data
+npm run insert-data
 
 
 # To Start Application
