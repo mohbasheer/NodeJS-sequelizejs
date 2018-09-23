@@ -1,12 +1,13 @@
 import expect from 'expect';
 import initializeDB from '../../../DB';
 import NotificaionModel from '../../../src/models/notification';
-import { setNotificationReceivers, createNotification, setNotificationSender } from '../../../src/services/notification';
+import { setNotificationReceivers } from '../../../src/services/student_notification_register';
+import { createNotification, setNotificationSender } from '../../../src/services/notification';
 import { getStudentsByEmail } from '../../../src/services/student';
 import { getTeacherByEmail } from '../../../src/services/teacher';
 
 
-describe.only('Notification Service test', () => {
+describe('Notification Service test', () => {
 
     before(() => initializeDB());
 
@@ -18,13 +19,12 @@ describe.only('Notification Service test', () => {
             "student22@gmail.com",
             "student33@gmail.com"
         ];
-        const notificaion = await createNotification('hello hi');
-        const students = await getStudentsByEmail(studentsEmail);
         const teacher = await getTeacherByEmail('teacheraa@gmail.com');
+        const notificaion = await createNotification('hello hi', teacher.employee_id);
+        const students = await getStudentsByEmail(studentsEmail);
         const receivers = await setNotificationReceivers(notificaion, students);
-        const sender = await setNotificationSender(notificaion, teacher);
-        expect(receivers.map(record => record.email)).toEqual(studentsEmail);
-        expect(sender.employee_id).toBe(teacher.employee_id);
+        expect(receivers).toEqual(students.map(student => student.student_id));
+        expect(notificaion.senderEmployeeId).toBe(teacher.employee_id);
     });
 
 });

@@ -15,10 +15,6 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      NotificationId: {
-        type: Sequelize.INTEGER,
-        defaultValue: false
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -31,6 +27,7 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('TeacherStudentRegisters');
+    await queryInterface.dropTable('StudentNotificationRegisters');
     return queryInterface.dropTable('Students');
   }
 };

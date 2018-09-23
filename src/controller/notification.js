@@ -1,7 +1,8 @@
 import NotificationModel from '../models/notification';
 import { getStudentsByEmail } from '../services/student';
 import { getTeacherByEmail, getStudentByNotCondition } from '../services/teacher';
-import { createNotification, setNotificationReceivers, setNotificationSender } from '../services/notification';
+import { setNotificationReceivers } from '../services/student_notification_register';
+import { createNotification, setNotificationSender } from '../services/notification';
 import { missingParam, missingParamValue } from '../utils/throw_error';
 
 
@@ -22,15 +23,17 @@ export const retrieveForNotifications = async (req, res, next) => {
     let notification = req.body.notification.split(' ', 1)[0];
     const studentsEmail = req.body.notification.substr(notification.length).split(' @').filter(email => !!email.length)
     try {
-        const notification = await createNotification(notification);
-        const students = await getStudentsByEmail(studentsEmail);
         const teacher = await getTeacherByEmail(teacherEmail);
+        const notification = await createNotification(notification, teacher.employee_id);
+        const students = await getStudentsByEmail(studentsEmail);
         const registeredStudents = await getStudentByNotCondition(teacher, { email: studentsEmail });
-        let notifiedStudents = setNotificationReceivers(notification, students.concat(registeredStudents));
+        const allStudents = students.concat(registeredStudents);
+        let notifiedStudentIDs = setNotificationReceivers(notification, allStudents);
         await setNotificationSender(notification, teacher);
-        notifiedStudents = await notifiedStudents;
+        notifiedStudentIDs = await notifiedStudentIDs;
         res.json({
-            recipients: notifiedStudents
+            recipients: allStudents
+                .filter(student => notifiedStudentIDs.includes(student.student_id))
                 .filter(record => !record.suspended)
                 .map(record => record.email)
         });

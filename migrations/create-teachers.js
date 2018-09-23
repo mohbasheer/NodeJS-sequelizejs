@@ -11,10 +11,6 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      NotificationId: {
-        type: Sequelize.INTEGER,
-        defaultValue: false
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -26,8 +22,9 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    console.log('asfasfafasfa')
     await queryInterface.dropTable('TeacherStudentRegisters');
+    await queryInterface.dropTable('StudentNotificationRegisters');
+    await queryInterface.dropTable('Notifications');
     return queryInterface.dropTable('Teachers');
   }
 };

@@ -2,7 +2,7 @@ import expect from 'expect';
 import initializeDB from '../../../DB';
 import register from '../../../src/models/teacher_student_register';
 import { createNewRegister } from '../../../src/services/teacher_student_register';
-import { getTeacherByEmail, getStudents, getStudentByNotCondition } from '../../../src/services/teacher';
+import { getStudentsByTeacher, getTeacherByEmail, getStudents, getStudentByNotCondition } from '../../../src/services/teacher';
 import { getStudentsByEmail } from '../../../src/services/student';
 
 describe('Teacher Service test', () => {
@@ -40,7 +40,7 @@ describe('Teacher Service test', () => {
         expect(result.map(student => student.email)).toEqual(emails);
     });
 
-    it.only('get all student for a given teacher except specified emails using getStudentByNotCondition service', async () => {
+    it('get all student for a given teacher except specified emails using getStudentByNotCondition service', async () => {
         const students_data = [
             "student11@gmail.com",
             "student22@gmail.com",
