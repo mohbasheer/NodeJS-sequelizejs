@@ -11,6 +11,9 @@ module.exports = {
             message: {
                 type: Sequelize.STRING
             },
+            senderEmployeeId: {
+                type: Sequelize.INTEGER
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

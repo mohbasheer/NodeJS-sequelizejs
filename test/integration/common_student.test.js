@@ -7,7 +7,6 @@ import notification from '../../src/models/notification';
 import { createNewRegister } from '../../src/services/teacher_student_register';
 import { getTeacherByEmail } from '../../src/services/teacher';
 import { getStudentsByEmail, cancelSuspend, doSuspend } from '../../src/services/student';
-import { registerStudents } from '../util';
 
 
 describe('Test Commonstudents API', () => {

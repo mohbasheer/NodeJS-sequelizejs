@@ -13,7 +13,7 @@ describe('Test Register API', () => {
     });
 
     it('register studenst with teacher', done => {
-        registerStudents([
+        registerStudents("teacheraa@gmail.com", [
             "student11@gmail.com",
             "student22@gmail.com"
         ])
