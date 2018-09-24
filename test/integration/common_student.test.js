@@ -2,7 +2,7 @@ import app from '../../src/app';
 import expect from 'expect';
 import request from 'supertest';
 import initializeDB from '../../DB';
-import register from '../../src/models/teacher_student_register';
+import RegisterModel from '../../src/models/teacher_student_register';
 import notification from '../../src/models/notification';
 import { createNewRegister } from '../../src/services/teacher_student_register';
 import { getTeacherByEmail } from '../../src/services/teacher';
@@ -16,7 +16,7 @@ describe('Test Commonstudents API', () => {
     const config = { where: {}, force: true };
 
     beforeEach(async () => {
-        await register.destroy(config);
+        await RegisterModel.destroy(config);
         let teacher = await getTeacherByEmail('teacheraa@gmail.com');
         let students = await getStudentsByEmail(["student11@gmail.com", "student22@gmail.com", "student33@gmail.com"])
         await createNewRegister(teacher, students);

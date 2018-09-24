@@ -4,7 +4,6 @@ import request from 'supertest';
 import initializeDB from '../../DB';
 import RegisterModel from '../../src/models/teacher_student_register';
 import NotificationModel from '../../src/models/notification';
-import NotificationRegisterModel from '../../src/models/student_notification_register';
 import { createNewRegister } from '../../src/services/teacher_student_register';
 import { getTeacherByEmail } from '../../src/services/teacher';
 import { getStudentsByEmail, cancelSuspend, doSuspend } from '../../src/services/student';
@@ -26,7 +25,6 @@ describe('Test Notification API', () => {
     });
 
     beforeEach(async () => {
-        await NotificationRegisterModel.destroy({ where: {}, force: true });
         return await NotificationModel.destroy({ where: {}, force: true });
     });
 

@@ -1,7 +1,6 @@
 import NotificationModel from '../models/notification';
 import { getStudentsByEmail } from '../services/student';
 import { getTeacherByEmail, getStudentByNotCondition, getStudentsByTeacher } from '../services/teacher';
-import { setNotificationReceivers } from '../services/student_notification_register';
 import { createNotification, setNotificationSender } from '../services/notification';
 import { missingParam, missingParamValue } from '../utils/throw_error';
 
@@ -33,9 +32,6 @@ export const retrieveForNotifications = async (req, res, next) => {
             registeredStudents = await getStudentsByTeacher(teacher);
         }
         const allStudents = students.concat(registeredStudents);
-        // let notifiedStudentIDs = setNotificationReceivers(notification, allStudents);
-        // await setNotificationSender(notification, teacher);
-        // notifiedStudentIDs = await notifiedStudentIDs;
         const recipients = allStudents
             .filter(record => !record.suspended)
             .map(record => record.email);
