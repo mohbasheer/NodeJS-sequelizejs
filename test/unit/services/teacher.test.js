@@ -1,5 +1,5 @@
 import expect from 'expect';
-import initializeDB from '../../../DB';
+import initializeDB, {closeDB} from '../../../DB';
 import register from '../../../src/models/teacher_student_register';
 import { createNewRegister } from '../../../src/services/teacher_student_register';
 import { getStudentsByTeacher, getTeacherByEmail, getStudents, getStudentByNotCondition } from '../../../src/services/teacher';
@@ -10,6 +10,8 @@ describe('Teacher Service test', () => {
     before(() => initializeDB());
 
     beforeEach(() => register.destroy({ where: {}, force: true }));
+
+    after(()=>closeDB());
 
     it('get all student for a given teacher using getStudents service', async () => {
         const students_data = [

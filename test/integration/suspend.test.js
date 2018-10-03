@@ -1,11 +1,13 @@
 import app from '../../src/app';
 import expect from 'expect';
 import request from 'supertest';
-import initializeDB from '../../DB';
+import initializeDB, {closeDB} from '../../DB';
 
 describe('Test suspend API', () => {
 
     before(async () => initializeDB());
+
+    after(()=>closeDB());
 
     it('suspend a given student', done => {
         request(app)
